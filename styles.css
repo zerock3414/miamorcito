@@ -1,0 +1,130 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Oswald', serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 52px;
+    background-color: #ffe6f2; /* Fondo rosado pálido */
+}
+
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.hearts {
+    position: absolute;
+    width: 100%;
+    height: 520%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ff6699" d="M50 85.5L20.5 56.5c-6.5-6.5-6.5-17 0-23.5 6.5-6.5 17-6.5 23.5 0L50 38.5l6-6c6.5-6.5 17-6.5 23.5 0 6.5 6.5 6.5 17 0 23.5L50 85.5z"/></svg>') repeat;
+    animation: moveHearts 20s linear infinite;
+}
+
+@keyframes moveHearts {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    gap: 20px;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.card {
+    width: calc(90% - 40px); /* Dos cards por fila en móviles */
+    height: 380px; /*Altura reducida para móviles*/
+    cursor: pointer;
+    margin: 10px; /* Margen entre cards */
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+@media (min-width: 768px) {
+    .card {
+        width: 280px; /* Tamaño fijo para pantallas más grandes */
+        height: 400px; /* Altura original para pantallas grandes */
+    }
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 15px; /* Padding interno para el contenido */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.card-front {
+    background-color: #ff6699; /* Color de fondo de la tarjeta frontal */
+    color: white;
+    font-size: 18px; /* Tamaño de fuente reducido para móviles */
+    overflow: hidden; /* Evita que el texto se salga */
+}
+
+.card-front:hover{
+    cursor: pointer;
+    background-color: white; /* Color de fondo de la tarjeta frontal */
+    color: #ff6699;
+}
+
+
+.card-back {
+    background-color: #ff99cc; /* Color de fondo de la tarjeta trasera */
+    color: white;
+    transform: rotateY(180deg);
+    font-size: 16px; /* Tamaño de fuente para el título */
+}
+
+.card-back h3 {
+    margin: 0;
+    font-size: 20px; /* Tamaño del título */
+    text-align: center;
+    position: absolute;
+    top: 20px; /* Título en la parte superior */
+}
+
+.card-back a {
+    color: white;
+    text-decoration: none; 
+    font-weight: bold;
+    margin-top: 10px;
+    display: inline-block;
+    padding: 25px 30px;
+    background-color: #ff3366;
+    border-radius: 5px;
+}
+
+.card-back a:hover {
+    background-color: #ff0044;
+}
